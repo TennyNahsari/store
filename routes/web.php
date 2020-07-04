@@ -34,5 +34,10 @@ Route::post('/item/hapus', 'ItemController@hapus');
 
 Route::get('/lihatmember/{id}/{password}', 'MemberController@index');
 
+Route::get('/transaksi', 'TransactionController@index')->name('transaction');
+Route::post('/transaksi/tambah', 'TransactionController@tambah');
+
+Route::post('/transaksi/tambahitem', 'TransactionController@tambahitem');
+
 
 

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\customer;
 use App\Item;
 
 class MemberController extends Controller
 {
     public function index($id,$password)
     {
-        $user = User::find($id);
+        $user = customer::find($id);
         $items = Item::all();
 
         if(($user->password) == ($password)){

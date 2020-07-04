@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\customer;
 
 class HomeController extends Controller
 {
@@ -24,23 +24,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('home')->with('users', $users);
+        $customers = customer::all();
+        return view('home')->with('customers', $customers);
     }
 
     public function tambah(Request $request)
     {
-        $user = new User;
-        $user->name = $request->input('nama');
-        $user->email = $request->input('email');
-        $user->password = $request->input('pwd');
-        $user->alamat = $request->input('alamat');
-        $user->point = $request->input('point');;
-        $user->save();
+        $customers = new customer;
+        $customers->name = $request->input('nama');
+        $customers->email = $request->input('email');
+        $customers->password = $request->input('pwd');
+        $customers->alamat = $request->input('alamat');
+        $customers->point = $request->input('point');
+        $customers->save();
 
-        $date = date('YmdHi');
+        //$date = date('YmdHi');
 
-        return response()->json(['success' => $date]);
+        return response()->json(['success' => 'Data Added successfully.']);
 
     }
 
@@ -48,13 +48,13 @@ class HomeController extends Controller
     {
         $id = $request->input('idmember');
 
-        $user = User::find($id);
-        $user->name = $request->input('nama');
-        $user->email = $request->input('email');
-        $user->password = $request->input('pwd');
-        $user->alamat = $request->input('alamat');
-        $user->point = $request->input('point');;
-        $user->save();
+        $customers = customer::find($id);
+        $customers->name = $request->input('nama');
+        $customers->email = $request->input('email');
+        $customers->password = $request->input('pwd');
+        $customers->alamat = $request->input('alamat');
+        $customers->point = $request->input('point');;
+        $customers->save();
 
         return response()->json(['success' => 'Data Edited successfully.']);
 
@@ -65,8 +65,8 @@ class HomeController extends Controller
     {
         $id = $request->input('idmember');
 
-        $user = User::find($id);
-        $user->delete();
+        $customers = customer::find($id);
+        $customers->delete();
 
         return response()->json(['success' => 'Data Deleted successfully.']);
 

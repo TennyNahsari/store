@@ -41,7 +41,7 @@
                           <a class="nav-link" href="{{url('/item')}}">Item</a>
                        </li>
                        <li class="nav-item">
-                          <a class="nav-link" href="{{url('/transaksi')}}">Transaksi</a>
+                          <a class="nav-link" href="#">Transaksi</a>
                        </li>
                        <li class="nav-item">
                           <a class="nav-link" href="#">Hadiah</a>
@@ -90,7 +90,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('List of Members') }}</div>
+                <div class="card-header">{{ __('List of Transactions') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -103,33 +103,56 @@
 
                    <table class="table"> 
                       <tr>
-                         <th>ID Member</th>
-                         <th>Nama</th>
-                         <th>Email</th>
-                         <th>Alamat</th>
-                         <th>Point</th>
+                         <th>ID Transaksi</th>
+                         <th>Nama Customer</th>
+                         <th>Total Harga</th>
+                         <th>Status</th>
                       </tr>
 
-                      @foreach ($customers as $customer)
+                      @foreach ($transactions as $transaction)
                     
                         <tr>
-                          <td>{{$customer->id}}</td>
-                          <td>{{$customer->name}}</td>
-                          <td>{{$customer->email}}</td>
-                          <td>{{$customer->alamat}}</td>
-                          <td>{{$customer->point}}</td>
+                          <td>{{$transaction->idtransaction}}</td>
+                          <td>{{$transaction->customer}}</td>
+                          <td>{{$transaction->totalharga}}</td>
+                          <td>{{$transaction->status}}</td>
                         </tr>
                    
                       @endforeach
 
-                   </table>
+                   </table> 
 
                    <div class="text-right">
-                      <button type="button" name="tambah_member" id="tambah_member" class="btn btn-success btn-sm">Tambah Member</button>
-                      <button type="button" name="edit_member" id="edit_member" class="btn btn-success btn-sm">Edit Member</button>
-                      <button type="button" name="hapus_member" id="hapus_member" class="btn btn-success btn-sm">Hapus Member</button>
+                      <button type="button" name="tambah_transaksi" id="tambah_transaksi" class="btn btn-success btn-sm">TambahTransaksi</button>
+                      <button type="button" name="tambah_item" id="tambah_item" class="btn btn-success btn-sm">Tambah Item Transaksi</button>
+                      <button type="button" name="finish" id="finish" class="btn btn-success btn-sm">Finish Transaksi</button>
                    </div>
                    <br />
+
+                   <h3>Item Transaksi</h3>
+
+                   <table class="table"> 
+                    <tr>
+                       <th>ID Transaksi</th>
+                       <th>ID Customer</th>
+                       <th>ID Item</th>
+                       <th>Jumlah Item</th>
+                       <th>Total Harga</th>
+                    </tr>
+
+                    @foreach ($baskets as $basket)
+                  
+                      <tr>
+                        <td>{{$basket->transaksi}}</td>
+                        <td>{{$basket->customer}}</td>
+                        <td>{{$basket->item}}</td>
+                        <td>{{$basket->jumlah}}</td>
+                        <td>{{$basket->totalharga}}</td>
+                      </tr>
+                 
+                    @endforeach
+
+                 </table> 
          
                    </div>              
 
@@ -147,50 +170,19 @@
      <div class="modal-content">
       <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title">Tambah Member</h4>
+             <h4 class="modal-title">Tambah Transaksi</h4>
            </div>
            <div class="modal-body">
             <span id="form_result"></span>
             <form method="post" id="sample_form" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
             <div class="form-group">
-                    <label class="control-label col-md-4" >ID Member: </label>
+                    <label class="control-label col-md-4" >ID Customer : </label>
                     <div class="col-md-8">
                      <input type="text" name="idmember" id="idmember" class="form-control" />
                     </div>
             </div>
-            <div class="form-group">
-               <label class="control-label col-md-4" >Nama : </label>
-               <div class="col-md-8">
-                <input type="text" name="nama" id="nama" class="form-control" />
-               </div>
-              </div>
-              <div class="form-group">
-               <label class="control-label col-md-4">Email : </label>
-               <div class="col-md-8">
-                <input type="email" name="email" id="email" class="form-control" />
-               </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-4">Password : </label>
-                <div class="col-md-8">
-                 <input type="password" name="pwd" id="pwd" class="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Alamat : </label>
-                    <div class="col-md-8">
-                     <input type="text" name="alamat" id="alamat" class="form-control" />
-                    </div>
-               </div>
-
-               <div class="form-group">
-                <label class="control-label col-md-4">Point : </label>
-                <div class="col-md-8">
-                 <input type="text" name="point" id="point" class="form-control" />
-                </div>
-                </div>
-            
+         
               <br />
               <div class="form-group" class="text-center">
                <input type="hidden" name="action" id="action" />
@@ -202,36 +194,76 @@
        </div>
    </div>
 
-   
+   <div id="formModalB" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h4 class="modal-title">Tambah Item Transaksi</h4>
+           </div>
+           <div class="modal-body">
+            <span id="form_resultb"></span>
+            <form method="post" id="sample_formb" class="form-horizontal" enctype="multipart/form-data">
+                @csrf
+            <div class="form-group">
+                    <label class="control-label col-md-4" >ID Transaksi : </label>
+                    <div class="col-md-8">
+                     <input type="text" name="idtransaksi" id="idtransaksi" class="form-control" />
+                    </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4" >ID Customer : </label>
+                <div class="col-md-8">
+                 <input type="text" name="idmember" id="idmember" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4" >ID Item : </label>
+                <div class="col-md-8">
+                 <input type="text" name="iditem" id="iditem" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4" >Jumlah : </label>
+                <div class="col-md-8">
+                 <input type="text" name="jumlah" id="jumlah" class="form-control" />
+                </div>
+            </div>
+         
+              <br />
+              <div class="form-group" class="text-center">
+               <input type="hidden" name="actionb" id="actionb" />
+               <input type="submit" name="action_buttonb" id="action_buttonb" class="btn btn-warning" value="Add" />
+              </div>
+            </form>
+           </div>
+        </div>
+       </div>
+   </div>
+
+
 <script>
 
-$('#tambah_member').click(function(){
-  $('.modal-title').text("Tambah Member");
-     $('#action_button').val("Add Member");
-     $('#action').val("AddMember");
+$('#tambah_transaksi').click(function(){
+  $('.modal-title').text("Tambah Transaksi");
+     $('#action_button').val("Add Transaksi");
+     $('#action').val("AddTransaksi");
      $('#formModal').modal('show');
  });
 
- $('#edit_member').click(function(){
-  $('.modal-title').text("Edit Member");
-     $('#action_button').val("Edit Member");
-     $('#action').val("EditMember");
-     $('#formModal').modal('show');
- });
-
- $('#hapus_member').click(function(){
-  $('.modal-title').text("Hapus Member");
-     $('#action_button').val("Hapus Member");
-     $('#action').val("HapusMember");
-     $('#formModal').modal('show');
+ $('#tambah_item').click(function(){
+  $('.modal-title').text("Tambah Item Transaksi");
+     $('#action_buttonb').val("Add Item Transaksi");
+     $('#actionb').val("AddItem");
+     $('#formModalB').modal('show');
  });
 
  $('#sample_form').submit(function(event){
   
    event.preventDefault();
-   if($('#action').val() == 'AddMember'){
+   if($('#action').val() == 'AddTransaksi'){
    $.ajax({
-    url:"{{url('/home/tambah')}}",
+    url:"{{url('/transaksi/tambah')}}",
     method:"POST",
     data: $('#sample_form').serialize(),
     dataType:"json",
@@ -244,53 +276,21 @@ $('#tambah_member').click(function(){
 
    })
   }
-
-  if($('#action').val() == 'EditMember'){
-   $.ajax({
-    url:"{{url('/home/edit')}}",
-    method:"POST",
-    data: $('#sample_form').serialize(),
-    dataType:"json",
-    success:function(data)
-    {
-        if(data.success){
-            $('#form_result').html(data.success);
-        }
-    }
-
-   })
-  }
-
-  if($('#action').val() == 'HapusMember'){
-   $.ajax({
-    url:"{{url('/home/hapus')}}",
-    method:"POST",
-    data: $('#sample_form').serialize(),
-    dataType:"json",
-    success:function(data)
-    {
-        if(data.success){
-            $('#form_result').html(data.success);
-        }
-    }
-
-   })
-  }
-  
+ 
 })
 
-$('#sample_formc').submit(function(event){
+$('#sample_formb').submit(function(event){
   
   event.preventDefault();
   $.ajax({
-   url:"{{url('/home/hapus')}}",
+   url:"{{url('/transaksi/tambahitem')}}",
    method:"POST",
-   data: $('#sample_formc').serialize(),
+   data: $('#sample_formb').serialize(),
    dataType:"json",
    success:function(data)
    {
        if(data.success){
-           $('#form_resultc').html(data.success);
+           $('#form_resultb').html(data.success);
        }
    }
 
@@ -299,5 +299,7 @@ $('#sample_formc').submit(function(event){
 })
 
 </script>
+
+
 
 
