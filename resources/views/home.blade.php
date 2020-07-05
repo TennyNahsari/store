@@ -182,7 +182,7 @@
                <div class="form-group">
                 <label class="control-label col-md-4">Point : </label>
                 <div class="col-md-8">
-                 <input type="text" name="point" id="point" class="form-control" />
+                 <input type="number" name="point" id="point" class="form-control" />
                 </div>
                 </div>
             

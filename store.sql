@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2020 at 02:29 PM
+-- Generation Time: Jul 05, 2020 at 07:47 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -32,8 +32,8 @@ CREATE TABLE `baskets` (
   `transaksi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `item` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jumlah` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `totalharga` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jumlah` int(10) NOT NULL,
+  `totalharga` int(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,9 +43,12 @@ CREATE TABLE `baskets` (
 --
 
 INSERT INTO `baskets` (`id`, `transaksi`, `customer`, `item`, `jumlah`, `totalharga`, `created_at`, `updated_at`) VALUES
-(9, '202007040721', '1', '1', '2', '150000', '2020-07-04 05:15:59', '2020-07-04 05:15:59'),
-(10, '202007040721', '1', '4', '2', '150000', '2020-07-04 05:18:03', '2020-07-04 05:18:03'),
-(11, '202007040721', '1', '1', '2', '150000', '2020-07-04 05:26:20', '2020-07-04 05:26:20');
+(9, '202007040721', '1', '1', 2, 150000, '2020-07-04 05:15:59', '2020-07-04 05:15:59'),
+(10, '202007040721', '1', '4', 2, 150000, '2020-07-04 05:18:03', '2020-07-04 05:18:03'),
+(12, '202007050446', '4', '1', 2, 150000, '2020-07-04 21:47:29', '2020-07-04 21:47:29'),
+(13, '202007050443', '1', '1', 5, 150000, '2020-07-04 22:10:32', '2020-07-04 22:10:32'),
+(18, '202007050443', '1', '1', 1, 150000, '2020-07-04 22:16:24', '2020-07-04 22:16:24'),
+(19, '202007050443', '1', '1', 3, 450000, '2020-07-04 22:43:51', '2020-07-04 22:43:51');
 
 -- --------------------------------------------------------
 
@@ -59,7 +62,7 @@ CREATE TABLE `customers` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `point` int(11) NOT NULL,
+  `point` int(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -69,11 +72,13 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `alamat`, `password`, `point`, `created_at`, `updated_at`) VALUES
-(1, 'Vino', 'vino@yahoo.com', 'Bekasi', 'qwertyuio', 15, '2020-07-03 23:34:10', '2020-07-03 23:35:22'),
-(2, 'Vina', 'vina@gmail.com', 'Cikarang', 'qwertyuio', 10, '2020-07-03 23:35:47', '2020-07-03 23:35:47'),
+(1, 'Vino', 'vino@yahoo.com', 'Bekasi', 'qwertyuio', 15, '2020-07-03 23:34:10', '2020-07-04 20:43:10'),
+(2, 'Vina', 'vina@gmail.com', 'Cibitung', 'qwertyuio', 15, '2020-07-03 23:35:47', '2020-07-04 20:36:47'),
 (3, 'Vivin', 'vivin@gmail.com', 'Tangerang', 'qwertyuio', 20, '2020-07-03 23:36:17', '2020-07-03 23:36:17'),
 (6, 'Vinda', 'vinda@yahoo.com', 'Depok', 'qwertyuio', 10, '2020-07-03 23:37:09', '2020-07-03 23:37:09'),
-(7, 'Setya', 'setya@gmail.com', 'JakTIM', 'qwertyuio', 15, '2020-07-03 23:37:39', '2020-07-03 23:37:39');
+(11, 'Setya', 'setya@gmail.com', 'Bekasi', 'qwertyuio', 15, '2020-07-04 20:49:44', '2020-07-04 20:49:44'),
+(12, 'Vian', 'vian@yahoo.com', 'Bekasi', 'qwertyuio', 10, '2020-07-04 20:51:12', '2020-07-04 20:51:12'),
+(13, 'Vivit', 'vivit@gmail.com', 'Jaksel', 'qwertyuio', 15, '2020-07-04 22:38:30', '2020-07-04 22:38:30');
 
 -- --------------------------------------------------------
 
@@ -99,8 +104,8 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `items` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `harga` int(11) NOT NULL,
-  `point` int(11) NOT NULL,
+  `harga` int(10) NOT NULL,
+  `point` int(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -166,7 +171,7 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `transactions` (
   `idtransaction` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `totalharga` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `totalharga` int(10) NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -177,7 +182,12 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`idtransaction`, `customer`, `totalharga`, `status`, `created_at`, `updated_at`) VALUES
-('202007040721', '2', '0', 'BelumLunas', '2020-07-04 00:21:51', '2020-07-04 00:21:51');
+('202007040721', '2', 0, 'BelumLunas', '2020-07-04 00:21:51', '2020-07-04 00:21:51'),
+('202007050443', '1', 0, 'Belum Lunas', '2020-07-04 21:43:21', '2020-07-04 21:43:21'),
+('202007050445', '3', 0, 'Belum Lunas', '2020-07-04 21:45:25', '2020-07-04 21:45:25'),
+('202007050446', '4', 0, 'Belum Lunas', '2020-07-04 21:46:49', '2020-07-04 21:46:49'),
+('202007050507', '1', 0, 'Belum Lunas', '2020-07-04 22:07:43', '2020-07-04 22:07:43'),
+('202007050508', '1', 0, 'Belum Lunas', '2020-07-04 22:08:05', '2020-07-04 22:08:05');
 
 -- --------------------------------------------------------
 
@@ -203,14 +213,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `alamat`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `point`) VALUES
-(1, 'Tenny', 'tenny_nahsari@yahoo.com', 'Buaran 1 no 56 Jaktim', NULL, '$2y$10$0qYpSv2Apcs97EGFFpCxeuUcKZuLK65SPJ7sgP0PdEpPNJcrYZS1K', NULL, '2020-07-03 07:54:33', '2020-07-03 07:54:33', 0),
-(2, 'Teten', 't.nahsari@gmail.com', 'klender', NULL, '$2y$10$.6McLKJj8rPlPc8YaXaOh.Ydo9qHwLVoT4Esx6oLRc4X1/YO5MIeG', NULL, '2020-07-03 08:54:56', '2020-07-03 08:54:56', 0),
-(3, 'andhia', 'andhia@ecogreen.id', ' ', NULL, '$2y$10$xqRg/GbkCSPrXsZQi0fy0uJBaFkKFo3xyHGzN0xYi4wRSIkmAgsHu', NULL, '2020-07-03 09:05:27', '2020-07-03 09:05:27', 0),
-(4, 'Santi', 'admin@ecogreen.id', 'Depok', NULL, '$2y$10$xQGDA6GybDJrBBOOTloqQO6I5otprUvxA1aDHMZ6nGgp1VxaB1WaS', NULL, '2020-07-03 09:11:47', '2020-07-03 09:11:47', 0),
-(7, 'Vino', 'vino@gmail.com', 'Bekasi', NULL, 'qwertyuiop', NULL, '2020-07-03 11:29:27', '2020-07-03 11:29:27', 0),
-(10, 'Vivin', 'vivin@gmail.com', 'Tangerang', NULL, 'qwertyui', NULL, '2020-07-03 14:35:35', '2020-07-03 14:35:35', 10),
-(12, 'Setya', 'setya@gmail.com', 'Bekasi', NULL, 'qwertyui', NULL, '2020-07-03 14:38:30', '2020-07-03 14:38:30', 12),
-(13, 'Vina', 'vina@yahoo.com', 'Cikarang', NULL, 'qwertyui', NULL, '2020-07-03 14:39:33', '2020-07-03 14:39:33', 15);
+(1, 'Tenny', 'tenny_nahsari@yahoo.com', 'Buaran 1 no 56 Jaktim', NULL, '$2y$10$0qYpSv2Apcs97EGFFpCxeuUcKZuLK65SPJ7sgP0PdEpPNJcrYZS1K', NULL, '2020-07-03 07:54:33', '2020-07-03 07:54:33', 0);
 
 --
 -- Indexes for dumped tables
@@ -274,13 +277,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `baskets`
 --
 ALTER TABLE `baskets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`

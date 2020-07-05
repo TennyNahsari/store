@@ -171,54 +171,7 @@
        </div>
    </div>
 
-   <div id="formModalB" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title">Tambah Item Transaksi</h4>
-           </div>
-           <div class="modal-body">
-            <span id="form_resultb"></span>
-            <form method="post" id="sample_formb" class="form-horizontal" enctype="multipart/form-data">
-                @csrf
-            <div class="form-group">
-                    <label class="control-label col-md-4" >ID Transaksi : </label>
-                    <div class="col-md-8">
-                     <input type="text" name="idtransaksi" id="idtransaksi" class="form-control" />
-                    </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-4" >ID Customer : </label>
-                <div class="col-md-8">
-                 <input type="text" name="idmember" id="idmember" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-4" >ID Item : </label>
-                <div class="col-md-8">
-                 <input type="text" name="iditem" id="iditem" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-4" >Jumlah : </label>
-                <div class="col-md-8">
-                 <input type="text" name="jumlah" id="jumlah" class="form-control" />
-                </div>
-            </div>
-         
-              <br />
-              <div class="form-group" class="text-center">
-               <input type="hidden" name="actionb" id="actionb" />
-               <input type="submit" name="action_buttonb" id="action_buttonb" class="btn btn-warning" value="Add" />
-              </div>
-            </form>
-           </div>
-        </div>
-       </div>
-   </div>
-
-
+   
 <script>
 
 $('#tambah_transaksi').click(function(){

@@ -121,7 +121,7 @@
                       <div class="form-group">
                             <label class="control-label col-md-4">Jumlah : </label>
                             <div class="col-md-8">
-                             <input type="text" name="jumlah" id="jumlah" class="form-control" />
+                             <input type="number" name="jumlah" id="jumlah" class="form-control" />
                             </div>
                        </div>
                     

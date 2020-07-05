@@ -44,7 +44,7 @@ class TransactionController extends Controller
         $basket->customer = $request->input('idmember');
         $basket->item = $request->input('iditem');
         $basket->jumlah = $request->input('jumlah');
-        $basket->totalharga = $item->harga;
+        $basket->totalharga = ($item->harga) * ($request->input('jumlah'));
       
         $basket->save();
 

@@ -157,13 +157,13 @@
               <div class="form-group">
                <label class="control-label col-md-4">Harga : </label>
                <div class="col-md-8">
-                <input type="text" name="harga" id="harga" class="form-control" />
+                <input type="number" name="harga" id="harga" class="form-control" />
                </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-4">Point : </label>
                 <div class="col-md-8">
-                 <input type="text" name="point" id="point" class="form-control" />
+                 <input type="number" name="point" id="point" class="form-control" />
                 </div>
                </div>
              
