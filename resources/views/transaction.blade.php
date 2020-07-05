@@ -195,7 +195,7 @@ $('#tambah_transaksi').click(function(){
     {
         if(data.success){
             $('#form_result').html(data.success);
-            $('#formModal').modal('hidden');
+            $('#formModal').modal('hide');
             window.location.href = "http://localhost/store/public/transaksi";
         }
     }

@@ -332,7 +332,8 @@ $('#tambah_item').click(function(){
     {
         if(data.success){
             $('#form_result').html(data.success);
-            $('#sample_form')[0].reset();
+            $('#formModal').modal('hide');
+            window.location.href = "http://localhost/store/public/item";
         }
     }
 
@@ -352,8 +353,8 @@ $('#sample_formb').submit(function(event){
    success:function(data)
    {
        if(data.success){
-           $('#form_resultb').html(data.success);
-           $('#sample_formb')[0].reset();
+         $('#formModalB').modal('hide');
+         window.location.href = "http://localhost/store/public/item";
        }
    }
 
@@ -373,8 +374,8 @@ $('#sample_formc').submit(function(event){
    success:function(data)
    {
        if(data.success){
-           $('#form_resultc').html(data.success);
-           $('#sample_formb')[0].reset();
+         $('#formModalC').modal('hide');
+         window.location.href = "http://localhost/store/public/item";
        }
    }
 
