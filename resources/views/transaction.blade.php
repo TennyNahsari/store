@@ -41,7 +41,7 @@
                           <a class="nav-link" href="{{url('/item')}}">Item</a>
                        </li>
                        <li class="nav-item">
-                          <a class="nav-link" href="#">Transaksi</a>
+                          <a class="nav-link" href="{{url('/transaksi')}}">Transaksi</a>
                        </li>
                        <li class="nav-item">
                           <a class="nav-link" href="#">Hadiah</a>

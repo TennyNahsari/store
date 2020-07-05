@@ -60,7 +60,7 @@ class TransactionController extends Controller
 
     }
 
-    public function finishtransaksi(Request $request)
+    public function finishtransaksi($idtransaksi)
     {
         return redirect('/transaksi');
     }
