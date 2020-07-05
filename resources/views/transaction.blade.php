@@ -107,6 +107,7 @@
                          <th>Nama Customer</th>
                          <th>Total Harga</th>
                          <th>Status</th>
+                         <th>Action</th>
                       </tr>
 
                       @foreach ($transactions as $transaction)
@@ -116,6 +117,9 @@
                           <td>{{$transaction->customer}}</td>
                           <td>{{$transaction->totalharga}}</td>
                           <td>{{$transaction->status}}</td>
+                          <td><a href="{{route('tambahdataitem',$transaction->idtransaction)}}" class="btn btn-success btn-sm">Add Item Transaksi</a>
+                            <a href="{{route('finishtransaksi',$transaction->idtransaction)}}" class="btn btn-success btn-sm">Finish</a>
+                            </td>
                         </tr>
                    
                       @endforeach
@@ -124,35 +128,8 @@
 
                    <div class="text-right">
                       <button type="button" name="tambah_transaksi" id="tambah_transaksi" class="btn btn-success btn-sm">TambahTransaksi</button>
-                      <button type="button" name="tambah_item" id="tambah_item" class="btn btn-success btn-sm">Tambah Item Transaksi</button>
-                      <button type="button" name="finish" id="finish" class="btn btn-success btn-sm">Finish Transaksi</button>
                    </div>
                    <br />
-
-                   <h3>Item Transaksi</h3>
-
-                   <table class="table"> 
-                    <tr>
-                       <th>ID Transaksi</th>
-                       <th>ID Customer</th>
-                       <th>ID Item</th>
-                       <th>Jumlah Item</th>
-                       <th>Total Harga</th>
-                    </tr>
-
-                    @foreach ($baskets as $basket)
-                  
-                      <tr>
-                        <td>{{$basket->transaksi}}</td>
-                        <td>{{$basket->customer}}</td>
-                        <td>{{$basket->item}}</td>
-                        <td>{{$basket->jumlah}}</td>
-                        <td>{{$basket->totalharga}}</td>
-                      </tr>
-                 
-                    @endforeach
-
-                 </table> 
          
                    </div>              
 
@@ -251,12 +228,6 @@ $('#tambah_transaksi').click(function(){
      $('#formModal').modal('show');
  });
 
- $('#tambah_item').click(function(){
-  $('.modal-title').text("Tambah Item Transaksi");
-     $('#action_buttonb').val("Add Item Transaksi");
-     $('#actionb').val("AddItem");
-     $('#formModalB').modal('show');
- });
 
  $('#sample_form').submit(function(event){
   
@@ -271,6 +242,8 @@ $('#tambah_transaksi').click(function(){
     {
         if(data.success){
             $('#form_result').html(data.success);
+            $('#formModal').modal('hidden');
+            window.location.href = "http://localhost/store/public/transaksi";
         }
     }
 
@@ -279,24 +252,7 @@ $('#tambah_transaksi').click(function(){
  
 })
 
-$('#sample_formb').submit(function(event){
-  
-  event.preventDefault();
-  $.ajax({
-   url:"{{url('/transaksi/tambahitem')}}",
-   method:"POST",
-   data: $('#sample_formb').serialize(),
-   dataType:"json",
-   success:function(data)
-   {
-       if(data.success){
-           $('#form_resultb').html(data.success);
-       }
-   }
 
-  })
- 
-})
 
 </script>
 

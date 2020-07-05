@@ -118,7 +118,7 @@
                               <td>{{$item->point}}</td>
                             </tr>
     
-                          @endforeach
+                         @endforeach 
     
                        </table> 
 

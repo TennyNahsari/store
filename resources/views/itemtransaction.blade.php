@@ -99,40 +99,37 @@
                         </div>
                     @endif
 
-                   <div class=" ">
-
-                   <table class="table"> 
-                      <tr>
-                         <th>ID Member</th>
-                         <th>Nama</th>
-                         <th>Email</th>
-                         <th>Alamat</th>
-                         <th>Point</th>
-                         <th>Action</th>
-                      </tr>
-
-                      @foreach ($customers as $customer)
+                    <form method="post" id="sample_form" action="{{ action('TransactionController@tambahitem') }}" class="form-horizontal" enctype="multipart/form-data">
+                        @csrf
+                    <div class="form-group">
+                            <label class="control-label col-md-4" >ID Transaksi : {{$idtransaksi}} </label>
+                            <input type="hidden" name="idtransaksi" id="idtransaksi" value="{{$idtransaksi}}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                       <label class="control-label col-md-4" >ID Customer : </label>
+                       <div class="col-md-8">
+                        <input type="text" name="idmember" id="idmember" class="form-control" />
+                       </div>
+                      </div>
+                      <div class="form-group">
+                       <label class="control-label col-md-4">ID Item : </label>
+                       <div class="col-md-8">
+                        <input type="text" name="iditem" id="iditem" class="form-control" />
+                       </div>
+                      </div>
+        
+                      <div class="form-group">
+                            <label class="control-label col-md-4">Jumlah : </label>
+                            <div class="col-md-8">
+                             <input type="text" name="jumlah" id="jumlah" class="form-control" />
+                            </div>
+                       </div>
                     
-                        <tr>
-                          <td>{{$customer->id}}</td>
-                          <td>{{$customer->name}}</td>
-                          <td>{{$customer->email}}</td>
-                          <td>{{$customer->alamat}}</td>
-                          <td>{{$customer->point}}</td>
-                          <td><a href="{{route('editdata',$customer->id)}}" class="btn btn-success btn-sm">Edit</a>
-                              <a href="{{route('hapusdata',$customer->id)}}" class="btn btn-success btn-sm">Hapus</a></td>
-                        </tr>
-                   
-                      @endforeach
-
-                   </table>
-
-                   <div class="text-right">
-                      <button type="button" name="tambah_member" id="tambah_member" class="btn btn-success btn-sm">Tambah Member</button>
-                   </div>
-                   <br />
-         
-                   </div>              
+                      <br />
+                      <div class="form-group" class="text-center">
+                       <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Tambah Item" />
+                      </div>
+                    </form>  
 
                 </div>
             </div>
@@ -143,94 +140,5 @@
 </body>
 </html>
 
-<div id="formModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title">Tambah Member</h4>
-           </div>
-           <div class="modal-body">
-            <span id="form_result"></span>
-            <form method="post" id="sample_form" class="form-horizontal" enctype="multipart/form-data">
-                @csrf
-            <div class="form-group">
-               <label class="control-label col-md-4" >Nama : </label>
-               <div class="col-md-8">
-                <input type="text" name="nama" id="nama" class="form-control" />
-               </div>
-              </div>
-              <div class="form-group">
-               <label class="control-label col-md-4">Email : </label>
-               <div class="col-md-8">
-                <input type="email" name="email" id="email" class="form-control" />
-               </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-4">Password : </label>
-                <div class="col-md-8">
-                 <input type="password" name="pwd" id="pwd" class="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Alamat : </label>
-                    <div class="col-md-8">
-                     <input type="text" name="alamat" id="alamat" class="form-control" />
-                    </div>
-               </div>
-
-               <div class="form-group">
-                <label class="control-label col-md-4">Point : </label>
-                <div class="col-md-8">
-                 <input type="text" name="point" id="point" class="form-control" />
-                </div>
-                </div>
-            
-              <br />
-              <div class="form-group" class="text-center">
-               <input type="hidden" name="action" id="action" />
-               <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
-              </div>
-            </form>
-           </div>
-        </div>
-       </div>
-   </div>
-
-   
-<script>
-
-$('#tambah_member').click(function(){
-  $('.modal-title').text("Tambah Member");
-     $('#action_button').val("Add Member");
-     $('#action').val("AddMember");
-     $('#formModal').modal('show');
- });
-
-
- $('#sample_form').submit(function(event){
-  
-   event.preventDefault();
-   if($('#action').val() == 'AddMember'){
-   $.ajax({
-    url:"{{url('/home/tambah')}}",
-    method:"POST",
-    data: $('#sample_form').serialize(),
-    dataType:"json",
-    success:function(data)
-    {
-        if(data.success){
-            $('#form_result').html(data.success);
-            $('#formModal').modal('hide');
-            window.location.href = "http://localhost/store/public/home";
-        }
-    }
-
-   })
-  }
-  
-})
-
-</script>
 
 

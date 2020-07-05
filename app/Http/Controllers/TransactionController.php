@@ -13,6 +13,7 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::all();
         $baskets = basket::all();
+        $items = Item::all();
 
         return view('transaction')->with('transactions', $transactions)->with('baskets', $baskets);
     }
@@ -47,7 +48,21 @@ class TransactionController extends Controller
       
         $basket->save();
 
-        return response()->json(['success' => 'Data Added successfully.']);
+        //return $this->index();
+        return redirect('/transaksi');
+
+    }
+
+    public function tambahdataitem($idtransaksi)
+    {
+        
+        return view('itemtransaction')->with('idtransaksi', $idtransaksi);
+
+    }
+
+    public function finishtransaksi(Request $request)
+    {
+        return redirect('/transaksi');
     }
 
 

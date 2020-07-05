@@ -22,6 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home/tambah', 'HomeController@tambah');
 Route::post('/home/edit', 'HomeController@edit');
+Route::get('/home/editdata/{idmember}', 'HomeController@editdata')->name('editdata');
+Route::get('/home/hapusdata/{idmember}', 'HomeController@hapusdata')->name('hapusdata');
 Route::post('/home/hapus', 'HomeController@hapus');
 
 
@@ -37,7 +39,10 @@ Route::get('/lihatmember/{id}/{password}', 'MemberController@index');
 Route::get('/transaksi', 'TransactionController@index')->name('transaction');
 Route::post('/transaksi/tambah', 'TransactionController@tambah');
 
+Route::get('/transaksi/tambahdataitem/{idtransaksi}', 'TransactionController@tambahdataitem')->name('tambahdataitem');
 Route::post('/transaksi/tambahitem', 'TransactionController@tambahitem');
+
+Route::get('/transaksi/finishtransaksi', 'TransactionController@finishtransaksi')->name('finishtransaksi');
 
 
 

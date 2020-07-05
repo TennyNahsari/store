@@ -25,7 +25,9 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
+
         return view('item')->with('items', $items);
+
     }
 
     public function tambah(Request $request)
