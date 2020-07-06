@@ -14,9 +14,8 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::where('status','Belum Lunas')->get();
         $baskets = basket::all();
-        $transactionslunas = Transaction::where('status','Lunas')->get();
-
-        return view('transaction')->with('transactions', $transactions)->with('baskets', $baskets)->with('transactionslunas', $transactionslunas);
+       
+        return view('transaction')->with('transactions', $transactions)->with('baskets', $baskets);
     }
 
     public function lunas()
@@ -31,9 +30,13 @@ class TransactionController extends Controller
     {
         $date = date('YmdHi');
 
+        $idmember = $request->input('idmember');
+
+        //$customer = customer::find($idmember);
+
         $transactions = new Transaction;
         $transactions->id = (String) $date ;
-        $transactions->customer = $request->input('idmember');
+        $transactions->customer = $idmember;
         $transactions->totalharga = 0;
         $transactions->status = "Belum Lunas";
       
@@ -51,7 +54,7 @@ class TransactionController extends Controller
 
         $basket = new basket;
         $basket->transaksi = $request->input('idtransaksi');
-        $basket->item = $request->input('iditem');
+        $basket->item = $item->name;
         $basket->jumlah = $request->input('jumlah');
         $basket->totalharga = ($item->harga) * ($request->input('jumlah'));
       
@@ -61,6 +64,15 @@ class TransactionController extends Controller
 
         //return $this->index();
         return view('itemtransaction')->with('idtransaksi', $idtransaksi)->with('baskets',$baskets);
+
+    }
+
+    public function hapusitem($idtransaksi)
+    {
+        $transaksi = Transaction::find($idtransaksi);
+        $transaksi->delete();
+
+        return $this->index();
 
     }
 

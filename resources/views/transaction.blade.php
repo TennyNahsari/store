@@ -104,7 +104,7 @@
                    <table class="table"> 
                       <tr>
                          <th>ID Transaksi</th>
-                         <th>Nama Customer</th>
+                         <th>ID Customer</th>
                          <th>Total Harga</th>
                          <th>Status</th>
                          <th>Action</th>
@@ -118,6 +118,7 @@
                           <td>{{$transaction->totalharga}}</td>
                           <td>{{$transaction->status}}</td>
                           <td><a href="{{route('tambahdataitem',$transaction->id)}}" class="btn btn-success btn-sm">Item Transaksi</a>
+                            <a href="{{route('hapusitem',$transaction->id)}}" class="btn btn-success btn-sm">Hapus </a>
                             </td>
                         </tr>
                    

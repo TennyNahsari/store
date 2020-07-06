@@ -43,6 +43,7 @@ Route::post('/transaksi/tambah', 'TransactionController@tambah');
 Route::get('/transaksi/tambahdataitem/{idtransaksi}', 'TransactionController@tambahdataitem')->name('tambahdataitem');
 Route::get('/transaksi/hapusdataitem/{idbasket}', 'TransactionController@hapusdataitem')->name('hapusdataitem');
 Route::post('/transaksi/tambahitem', 'TransactionController@tambahitem');
+Route::get('/transaksi/hapusitem/{idtransaksi}', 'TransactionController@hapusitem')->name('hapusitem');;
 
 Route::get('/transaksi/finishtransaksi/{idtransaksi}', 'TransactionController@finishtransaksi')->name('finishtransaksi');
 

@@ -104,7 +104,7 @@
                     <table class="table"> 
                         <tr>
                            <th>ID Transaksi</th>
-                           <th>Nama Customer</th>
+                           <th>ID Customer</th>
                            <th>Total Harga</th>
                            <th>Status</th>
                         </tr>

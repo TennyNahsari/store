@@ -129,7 +129,7 @@
                     <table class="table"> 
                         <tr>
                            <th>ID Transaksi</th>
-                           <th>ID Item</th>
+                           <th>Nama Item</th>
                            <th>Jumlah</th>
                            <th>Total Harga</th>
                            <th>Action</th>
