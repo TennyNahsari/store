@@ -113,12 +113,11 @@
                       @foreach ($transactions as $transaction)
                     
                         <tr>
-                          <td>{{$transaction->idtransaction}}</td>
+                          <td>{{$transaction->id}}</td>
                           <td>{{$transaction->customer}}</td>
                           <td>{{$transaction->totalharga}}</td>
                           <td>{{$transaction->status}}</td>
-                          <td><a href="{{route('tambahdataitem',$transaction->idtransaction)}}" class="btn btn-success btn-sm">Add Item Transaksi</a>
-                            <a href="{{route('finishtransaksi',$transaction->idtransaction)}}" class="btn btn-success btn-sm">Finish</a>
+                          <td><a href="{{route('tambahdataitem',$transaction->id)}}" class="btn btn-success btn-sm">Item Transaksi</a>
                             </td>
                         </tr>
                    
@@ -128,8 +127,13 @@
 
                    <div class="text-right">
                       <button type="button" name="tambah_transaksi" id="tambah_transaksi" class="btn btn-success btn-sm">TambahTransaksi</button>
+                      <a href="{{url('/transaksi/lunas')}}" class="btn btn-success btn-sm">Lihat Transaksi Lunas</a>
                    </div>
                    <br />
+
+                  
+
+                 </table> 
          
                    </div>              
 

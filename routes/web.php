@@ -37,9 +37,11 @@ Route::post('/item/hapus', 'ItemController@hapus');
 Route::get('/lihatmember/{id}/{password}', 'MemberController@index');
 
 Route::get('/transaksi', 'TransactionController@index')->name('transaction');
+Route::get('/transaksi/lunas', 'TransactionController@lunas');
 Route::post('/transaksi/tambah', 'TransactionController@tambah');
 
 Route::get('/transaksi/tambahdataitem/{idtransaksi}', 'TransactionController@tambahdataitem')->name('tambahdataitem');
+Route::get('/transaksi/hapusdataitem/{idbasket}', 'TransactionController@hapusdataitem')->name('hapusdataitem');
 Route::post('/transaksi/tambahitem', 'TransactionController@tambahitem');
 
 Route::get('/transaksi/finishtransaksi/{idtransaksi}', 'TransactionController@finishtransaksi')->name('finishtransaksi');

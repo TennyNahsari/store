@@ -25,6 +25,9 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
+        //$items = Item::where('name','Keyboard')->get();
+
+        //$items = DB::select('select * from items');
 
         return view('item')->with('items', $items);
 

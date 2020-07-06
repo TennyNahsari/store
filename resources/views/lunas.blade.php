@@ -90,7 +90,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('List of Members') }}</div>
+                <div class="card-header">{{ __('Transaksi Lunas') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -99,58 +99,33 @@
                         </div>
                     @endif
 
-                    <form method="post" id="sample_form" action="{{ action('TransactionController@tambahitem') }}" class="form-horizontal" enctype="multipart/form-data">
-                        @csrf
-                    <div class="form-group">
-                            <label class="control-label col-md-4" >ID Transaksi : {{$idtransaksi}} </label>
-                            <input type="hidden" name="idtransaksi" id="idtransaksi" value="{{$idtransaksi}}" class="form-control" />
-                    </div>
-                      <div class="form-group">
-                       <label class="control-label col-md-4">ID Item : </label>
-                       <div class="col-md-8">
-                        <input type="text" name="iditem" id="iditem" class="form-control" />
-                       </div>
-                      </div>
-        
-                      <div class="form-group">
-                            <label class="control-label col-md-4">Jumlah : </label>
-                            <div class="col-md-8">
-                             <input type="number" name="jumlah" id="jumlah" class="form-control" />
-                            </div>
-                       </div>
-                    
-                      <br />
-                      <div class="form-group" class="text-center">
-                       <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Tambah Item" />
-                      </div>
-                    </form>  
-                    <br>
+                   <div class=" ">
 
                     <table class="table"> 
                         <tr>
                            <th>ID Transaksi</th>
-                           <th>ID Item</th>
-                           <th>Jumlah</th>
+                           <th>Nama Customer</th>
                            <th>Total Harga</th>
-                           <th>Action</th>
+                           <th>Status</th>
                         </tr>
   
-                        @foreach ($baskets as $basket)
+                        @foreach ($transactions as $transaction)
                       
                           <tr>
-                            <td>{{$basket->transaksi}}</td>
-                            <td>{{$basket->item}}</td>
-                            <td>{{$basket->jumlah}}</td>
-                            <td>{{$basket->totalharga}}</td>
-                            <td><a href="{{route('hapusdataitem',$basket->id)}}" class="btn btn-success btn-sm">Hapus Item Transaksi</a>
-                            </td>
+                            <td>{{$transaction->id}}</td>
+                            <td>{{$transaction->customer}}</td>
+                            <td>{{$transaction->totalharga}}</td>
+                            <td>{{$transaction->status}}</td>
                           </tr>
                      
                         @endforeach
-                          
+  
                      </table> 
-                     <a href="{{route('finishtransaksi',$idtransaksi)}}" class="btn btn-success btn-sm">Finish</a>
+
                      <a href="{{url('/transaksi')}}" class="btn btn-success btn-sm">Back</a>
+         
+                   </div>              
+
                 </div>
             </div>
         </div>
@@ -159,6 +134,9 @@
 
 </body>
 </html>
+
+
+
 
 
 

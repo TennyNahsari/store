@@ -135,10 +135,11 @@
                       <br />
                       <div class="form-group" class="text-center">
                        <input type="hidden" name="action" id="action" />
-                       <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Edit" />
+                       <input type="submit" name="action_button" id="action_button" class="btn btn-warning btn-sm" value="Edit" />
+                       <a href="{{url('/home')}}" class="btn btn-warning btn-sm">Back</a>
                       </div>
                     </form>  
-
+               
                 </div>
             </div>
         </div>
