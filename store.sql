@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2020 at 07:47 AM
+-- Generation Time: Jul 07, 2020 at 01:47 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `baskets` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `transaksi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `item` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jumlah` int(10) NOT NULL,
   `totalharga` int(10) NOT NULL,
@@ -42,13 +41,13 @@ CREATE TABLE `baskets` (
 -- Dumping data for table `baskets`
 --
 
-INSERT INTO `baskets` (`id`, `transaksi`, `customer`, `item`, `jumlah`, `totalharga`, `created_at`, `updated_at`) VALUES
-(9, '202007040721', '1', '1', 2, 150000, '2020-07-04 05:15:59', '2020-07-04 05:15:59'),
-(10, '202007040721', '1', '4', 2, 150000, '2020-07-04 05:18:03', '2020-07-04 05:18:03'),
-(12, '202007050446', '4', '1', 2, 150000, '2020-07-04 21:47:29', '2020-07-04 21:47:29'),
-(13, '202007050443', '1', '1', 5, 150000, '2020-07-04 22:10:32', '2020-07-04 22:10:32'),
-(18, '202007050443', '1', '1', 1, 150000, '2020-07-04 22:16:24', '2020-07-04 22:16:24'),
-(19, '202007050443', '1', '1', 3, 450000, '2020-07-04 22:43:51', '2020-07-04 22:43:51');
+INSERT INTO `baskets` (`id`, `transaksi`, `item`, `jumlah`, `totalharga`, `created_at`, `updated_at`) VALUES
+(37, '202007061652', 'Harddisk 2 TB', 1, 1000000, '2020-07-06 09:52:24', '2020-07-06 09:52:24'),
+(38, '202007061652', 'Keyboard', 1, 100000, '2020-07-06 09:54:13', '2020-07-06 09:54:13'),
+(39, '202007061713', 'Harddisk 2 TB', 1, 1000000, '2020-07-06 10:13:35', '2020-07-06 10:13:35'),
+(40, '202007061714', 'Flash Disk 128 GB', 1, 150000, '2020-07-06 10:14:44', '2020-07-06 10:14:44'),
+(41, '202007061714', 'Keyboard', 2, 200000, '2020-07-06 10:14:47', '2020-07-06 10:14:47'),
+(42, '202007061715', 'Wireless Mouse', 3, 225000, '2020-07-06 10:15:22', '2020-07-06 10:15:22');
 
 -- --------------------------------------------------------
 
@@ -72,13 +71,13 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `alamat`, `password`, `point`, `created_at`, `updated_at`) VALUES
-(1, 'Vino', 'vino@yahoo.com', 'Bekasi', 'qwertyuio', 15, '2020-07-03 23:34:10', '2020-07-04 20:43:10'),
-(2, 'Vina', 'vina@gmail.com', 'Cibitung', 'qwertyuio', 15, '2020-07-03 23:35:47', '2020-07-04 20:36:47'),
-(3, 'Vivin', 'vivin@gmail.com', 'Tangerang', 'qwertyuio', 20, '2020-07-03 23:36:17', '2020-07-03 23:36:17'),
+(2, 'Vina', 'vina@gmail.com', 'Cibitung', 'qwertyuio', 25, '2020-07-03 23:35:47', '2020-07-06 10:13:38'),
+(3, 'Vivin', 'vivin@gmail.com', 'Tangerang', 'qwertyuio', 30, '2020-07-03 23:36:17', '2020-07-06 10:15:31'),
 (6, 'Vinda', 'vinda@yahoo.com', 'Depok', 'qwertyuio', 10, '2020-07-03 23:37:09', '2020-07-03 23:37:09'),
 (11, 'Setya', 'setya@gmail.com', 'Bekasi', 'qwertyuio', 15, '2020-07-04 20:49:44', '2020-07-04 20:49:44'),
-(12, 'Vian', 'vian@yahoo.com', 'Bekasi', 'qwertyuio', 10, '2020-07-04 20:51:12', '2020-07-04 20:51:12'),
-(13, 'Vivit', 'vivit@gmail.com', 'Jaksel', 'qwertyuio', 15, '2020-07-04 22:38:30', '2020-07-04 22:38:30');
+(12, 'Vian', 'vian@yahoo.com', 'Bekasi', 'qwertyuio', 15, '2020-07-04 20:51:12', '2020-07-06 10:14:51'),
+(13, 'Vivit', 'vivit@gmail.com', 'Jaksel', 'qwertyuio', 15, '2020-07-04 22:38:30', '2020-07-04 22:38:30'),
+(14, 'Vino', 'vino@gmail.com', 'Cikarang', 'qwertyuio', 15, '2020-07-06 09:26:39', '2020-07-06 09:26:39');
 
 -- --------------------------------------------------------
 
@@ -115,7 +114,7 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `harga`, `point`, `created_at`, `updated_at`) VALUES
-(1, 'Flash Disk 64 GB', 150000, 3, '2020-07-03 16:28:15', '2020-07-03 16:28:15'),
+(1, 'Flash Disk 128 GB', 150000, 5, '2020-07-03 16:28:15', '2020-07-04 23:04:52'),
 (5, 'Harddisk 2 TB', 1000000, 5, '2020-07-03 11:41:46', '2020-07-03 11:41:46'),
 (6, 'Keyboard', 100000, 1, '2020-07-03 11:42:47', '2020-07-03 11:42:47'),
 (7, 'Wireless Mouse', 75000, 2, '2020-07-03 11:55:35', '2020-07-03 13:33:55'),
@@ -148,7 +147,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2020_07_03_162045_create_items_table', 3),
 (6, '2020_07_04_061607_create_customers_table', 4),
 (7, '2020_07_04_064000_create_baskets_table', 5),
-(8, '2020_07_04_064734_create_transactions_table', 6);
+(8, '2020_07_04_064734_create_transactions_table', 6),
+(9, '2020_07_06_142650_drop_column_basket', 7),
+(10, '2020_07_06_153212_add_column_id_transaction', 8);
 
 -- --------------------------------------------------------
 
@@ -169,7 +170,7 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `transactions` (
-  `idtransaction` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `totalharga` int(10) NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -181,13 +182,10 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`idtransaction`, `customer`, `totalharga`, `status`, `created_at`, `updated_at`) VALUES
-('202007040721', '2', 0, 'BelumLunas', '2020-07-04 00:21:51', '2020-07-04 00:21:51'),
-('202007050443', '1', 0, 'Belum Lunas', '2020-07-04 21:43:21', '2020-07-04 21:43:21'),
-('202007050445', '3', 0, 'Belum Lunas', '2020-07-04 21:45:25', '2020-07-04 21:45:25'),
-('202007050446', '4', 0, 'Belum Lunas', '2020-07-04 21:46:49', '2020-07-04 21:46:49'),
-('202007050507', '1', 0, 'Belum Lunas', '2020-07-04 22:07:43', '2020-07-04 22:07:43'),
-('202007050508', '1', 0, 'Belum Lunas', '2020-07-04 22:08:05', '2020-07-04 22:08:05');
+INSERT INTO `transactions` (`id`, `customer`, `totalharga`, `status`, `created_at`, `updated_at`) VALUES
+('202007061713', '2', 1000000, 'Lunas', '2020-07-06 10:13:24', '2020-07-06 10:13:38'),
+('202007061714', '12', 350000, 'Lunas', '2020-07-06 10:14:08', '2020-07-06 10:14:51'),
+('202007061715', '3', 225000, 'Lunas', '2020-07-06 10:15:08', '2020-07-06 10:15:31');
 
 -- --------------------------------------------------------
 
@@ -260,7 +258,7 @@ ALTER TABLE `password_resets`
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`idtransaction`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -277,13 +275,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `baskets`
 --
 ALTER TABLE `baskets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -295,13 +293,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
